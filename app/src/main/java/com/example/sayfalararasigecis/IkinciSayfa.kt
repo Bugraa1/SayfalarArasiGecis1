@@ -11,12 +11,19 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 
 @Composable
-fun IkinciSayfa(navController: NavController){
+fun IkinciSayfa(navController: NavController,
+                name:String,
+                age:Int){
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        Text(text = name)
+        Text(text = age.toString())
+
+
+
         Text(text = "İkinci Sayfa")
         Button(
             onClick = {navController.navigate("ucuncu_sayfa")}
