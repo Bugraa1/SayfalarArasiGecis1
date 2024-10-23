@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 
 @Composable
-fun BirinciSayfa(navController: NavController){
+fun BirinciSayfa(navController: NavController) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -19,8 +19,13 @@ fun BirinciSayfa(navController: NavController){
     ) {
         Text(text = "Birinci Sayfa")
 
+        val name = "Yusuf Buğra"
+        val age = 18
+
         Button(
-            onClick = {navController.navigate("ikinci_sayfa")}
+            onClick = {
+                navController.navigate("ikinci_sayfa" + "?name=${name}&age=${age}")
+            }
         ) {
             Text(text = "İlerle")
         }
