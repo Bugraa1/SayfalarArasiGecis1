@@ -11,9 +11,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.sayfalararasigecis.ui.theme.SayfalarArasiGecisTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,8 +39,23 @@ fun SayfaGecis(){
         composable(route = "ilk_sayfa") {
             BirinciSayfa(navController)
         }
-        composable(route = "ikinci_sayfa") {
-            IkinciSayfa(navController)
+        composable(route = "ikinci_sayfa"+"?name={name}&age={age}",
+            arguments = listOf(
+                navArgument(name = "name"){
+                    type= NavType.StringType
+                    defaultValue="isim yok"
+                },
+                navArgument(name = "age"){
+                    type= NavType.IntType
+                    defaultValue=0
+                }
+            )
+        ) {
+            val name =it.arguments?.getString("name")!!
+            val age = it.arguments?.getInt("age")
+            if (age != null) {
+                IkinciSayfa(navController,name,age)
+            }
         }
         composable(route = "ucuncu_sayfa") {
             UcuncuSayfa(navController)
